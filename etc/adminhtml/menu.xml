@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright ZT. All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="PWA_BlogTheme::rozy_settings" title="Rozy Theme Settings" module="ZT_BlogThemeRozy"
+             parent="PWA_Blog::elements" sortOrder="60" action="pwablogrozy/setting/edit/id/rozy"
+             resource="ZT_BlogTheme::configuration"/>
+    </menu>
+</config>

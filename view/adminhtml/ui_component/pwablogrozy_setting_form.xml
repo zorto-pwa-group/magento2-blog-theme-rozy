@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2019 ZT. All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">pwablogrozy_setting_form.setting_form_data_source</item>
+            <item name="deps" xsi:type="string">pwablogrozy_setting_form.setting_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">PWA Blog Theme Setting</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">pwablogrozy_setting_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="reset" xsi:type="string">ZT\Blog\Block\Adminhtml\Button\ResetButton</item>
+            <item name="save" xsi:type="string">ZT\Blog\Block\Adminhtml\Button\SaveButton</item>
+        </item>
+    </argument>
+    <dataSource name="setting_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">ZT\BlogTheme\Ui\DataProvider\Form\SettingDataProvider</argument>
+            <argument name="name" xsi:type="string">setting_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">identifier</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="pwablogtheme/setting/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">General</item>
+                <item name="sortOrder" xsi:type="number">1</item>
+            </item>
+        </argument>
+        <field name="setting_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="dataScope" xsi:type="string">setting_id</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_selected">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Is current theme</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">is_selected</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="identifier">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Theme Key (ID)</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="dataScope" xsi:type="string">identifier</item>
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                    <item name="default" xsi:type="string">rozy</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Theme Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                    <item name="default" xsi:type="string">Rozy Theme</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="additional_options">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Blog Settings</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Blog Title</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="logo_url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="label" xsi:type="string" translate="true">Blog Logo</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="pwablogrozy/setting_upload/logo"/>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">25</item>
+                </item>
+            </argument>
+        </field>
+        <field name="collapse_logo_url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="label" xsi:type="string" translate="true">Collapse Blog Logo</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="pwablogrozy/setting_upload/collapselogo"/>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </field>
+        <field name="email_contact">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Contact Email</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">35</item>
+                    <item name="dataScope" xsi:type="string">email_contact</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="phone_contact">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Contact Phone</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataScope" xsi:type="string">phone_contact</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="main_banner">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="label" xsi:type="string" translate="true">Blog Main Banner</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="pwablogrozy/setting_upload/banner"/>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">45</item>
+                </item>
+            </argument>
+        </field>
+        <field name="banner_title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Blog Main Banner Title</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataScope" xsi:type="string">banner_title</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="banner_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Blog Main Banner Text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">55</item>
+                    <item name="dataScope" xsi:type="string">banner_description</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="footer_copyright">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Blog Footer Copyright</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="dataScope" xsi:type="string">footer_copyright</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="ga_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Google Analytics Code</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="dataScope" xsi:type="string">ga_code</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="social">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Social Settings</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="facebook_url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Facebook URL</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="dataScope" xsi:type="string">facebook_url</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </field>
+        <field name="twitter">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Twitter URL</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataScope" xsi:type="string">twitter</item>
+                </item>
+            </argument>
+        </field>
+        <field name="instagram">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Instagram URL</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="dataScope" xsi:type="string">instagram</item>
+                </item>
+            </argument>
+        </field>
+        <field name="linkedin">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Linkedin URL</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">setting</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataScope" xsi:type="string">linkedin</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>
